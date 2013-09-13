@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>    
+    <meta name="description" content="Welcome to SC2 Balance! SC2 Balance presents a statistical analysis of game balance for races and maps in Starcraft 2 using the Grandmaster ladder.">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="@Url.Content("~/Content/Images/favicon.ico")" rel="icon" type="image/x-icon"/>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="site-wrapper">
+        @RenderBody()
+        
+        @Scripts.Render("~/bundles/d3")
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/knockout")
+        @Scripts.Render("~/bundles/utilities")
+        @Scripts.Render("~/bundles/viewModels")
+        @Scripts.Render("~/bundles/app")
+        @Scripts.Render("~/bundles/home")
+        @RenderSection("scripts", required: false)
+
+        @RenderPage("~/Views/Shared/_Footer.cshtml")
+    </div>
+</body>
+</html>

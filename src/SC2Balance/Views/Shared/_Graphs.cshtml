@@ -1,0 +1,21 @@
+﻿<!-- ko with: navigationViewModel -->
+<div id="balanceDiv" data-bind="visible: isCurrentPage('Balance')">
+    <div class="col-lg-8 balance-main">
+    </div>
+    <div class="col-lg-4 mini-balance-container">
+        <div class="row chartRow">
+            <div class="mini-balance tvp"></div>
+        </div>
+        <div class="row chartRow">
+            <div class="mini-balance tvz"></div>
+        </div>
+        <div class="row chartRow">
+            <div class="mini-balance zvp"></div>
+        </div>
+    </div>
+</div>
+<div id="historyDiv" data-bind="visible: isCurrentPage('History')">
+</div>
+<div id="mapsDiv" class="mini-balance-container" data-bind="visible: isCurrentPage('Maps')">
+</div>
+<!-- /ko -->

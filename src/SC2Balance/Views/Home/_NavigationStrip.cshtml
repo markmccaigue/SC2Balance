@@ -1,0 +1,17 @@
+﻿<!-- ko with: navigationViewModel -->
+    <div class="mainButton" data-bind="click: pageSelected.bind($data, 'Balance'), css: { selected: isCurrentPage('Balance') }">
+        <img src="~/Content/Images/balance.png" alt="balance" />
+        <div>Balance</div>
+        <hr class="button-underline"/>
+    </div>
+    <div class="mainButton" data-bind="click: pageSelected.bind($data, 'History'), css: { selected: isCurrentPage('History')}">
+        <img src="~/Content/Images/history.png" alt="history" />
+        <div>History</div>
+        <hr class="button-underline"/>
+    </div>
+    <div class="mainButton" data-bind="click: pageSelected.bind($data, 'Maps'), css: { selected: isCurrentPage('Maps')}">
+        <img src="~/Content/Images/map.png" alt="map" />
+        <div>Maps</div>
+        <hr class="button-underline"/>
+    </div>
+<!-- /ko -->

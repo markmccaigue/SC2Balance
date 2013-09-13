@@ -1,0 +1,198 @@
+﻿body {
+  font-family: 'Open Sans' !important;
+  background-image: url('/Content/Images/cubes.png');
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-family: inherit !important;
+}
+.site-wrapper {
+  width: 85%;
+  margin: 0px auto;
+}
+.footer-wrapper {
+  margin-bottom: 10px !important;
+}
+.mainButton {
+  width: 100%;
+  padding-top: 3px;
+  margin-top: 75px;
+  margin-bottom: 75px;
+  padding-bottom: 3px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+.clear {
+  clear: both;
+}
+div.navigation-strip {
+  margin-top: -35px;
+  font-size: 1.2em;
+}
+div.navigation-strip .mainButton.selected {
+  padding-bottom: 65px;
+}
+div.navigation-strip .mainButton.selected hr {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  margin: 0px;
+  border: 0px;
+  height: 3px;
+  display: block;
+  background: rgba(173, 0, 255, 0.7);
+  background: -moz-linear-gradient(left, rgba(173, 0, 255, 0) 0%, rgba(173, 0, 255, 0.7) 50%, rgba(173, 0, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(173, 0, 255, 0) 0%, rgba(173, 0, 255, 0.7) 50%, rgba(173, 0, 255, 0) 100%);
+  background: linear-gradient(left, rgba(173, 0, 255, 0) 0%, rgba(173, 0, 255, 0.7) 50%, rgba(173, 0, 255, 0) 100%);
+  width: 120px;
+  margin-left: -50px;
+  margin-top: -65px;
+}
+div.navigation-strip .mainButton:hover {
+  padding-bottom: 65px;
+}
+div.navigation-strip .mainButton:hover hr {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  margin: 0px;
+  border: 0px;
+  height: 3px;
+  display: block;
+  background: rgba(62, 222, 36, 0.8);
+  background: -moz-linear-gradient(left, rgba(62, 222, 36, 0) 0%, rgba(62, 222, 36, 0.8) 50%, rgba(62, 222, 36, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(62, 222, 36, 0) 0%, rgba(62, 222, 36, 0.8) 50%, rgba(62, 222, 36, 0) 100%);
+  background: linear-gradient(left, rgba(62, 222, 36, 0) 0%, rgba(62, 222, 36, 0.8) 50%, rgba(62, 222, 36, 0) 100%);
+  width: 120px;
+  margin-left: -50px;
+  margin-top: -65px;
+}
+div.navigation-strip .mainButton.selected:hover {
+  padding-bottom: 65px;
+}
+div.navigation-strip .mainButton.selected:hover hr {
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  margin: 0px;
+  border: 0px;
+  height: 3px;
+  display: block;
+  background: rgba(0, 152, 255, 0.7);
+  background: -moz-linear-gradient(left, rgba(0, 152, 255, 0) 0%, rgba(0, 152, 255, 0.7) 50%, rgba(0, 152, 255, 0) 100%);
+  background: -webkit-linear-gradient(left, rgba(0, 152, 255, 0) 0%, rgba(0, 152, 255, 0.7) 50%, rgba(0, 152, 255, 0) 100%);
+  background: linear-gradient(left, rgba(0, 152, 255, 0) 0%, rgba(0, 152, 255, 0.7) 50%, rgba(0, 152, 255, 0) 100%);
+  width: 120px;
+  margin-left: -50px;
+  margin-top: -65px;
+}
+.button-underline {
+  display: none;
+}
+.buttonbg {
+  background-color: #42ace2;
+  background-color: #ad00ff;
+}
+.main-logo {
+  width: 100%;
+}
+.top-pad {
+  padding-top: 40px;
+}
+#balanceDiv {
+  width: 100%;
+  height: 550px;
+}
+#mapsDiv {
+  width: 100%;
+  height: 100%;
+  height: 550px;
+}
+#historyDiv {
+  width: 100%;
+  height: 550px;
+}
+.balance-main {
+  height: 100%;
+}
+.mini-balance {
+  height: 100%;
+}
+.mini-balance-container {
+  height: 100%;
+}
+.mini-balance-container .chartRow {
+  height: 33%;
+}
+.mapsRow .mini-balance {
+  width: 25%;
+}
+.maps-row-padder {
+  margin-top: 100%;
+}
+.main-graph-container {
+  width: 100%;
+  padding-top: 45px;
+  text-align: center;
+}
+g.arc path {
+  stroke-width: 5px;
+  stroke: #f4f4f4;
+}
+g.arc text {
+  font-size: 1.3em;
+}
+.mini-balance g.arc text {
+  font-size: 0.9em;
+}
+#loadingDiv {
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0em;
+  left: 0em;
+  top: 0em;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  text-align: center;
+  color: white;
+}
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 1.5px;
+}
+.modal-title {
+  font-weight: bold;
+}
+.adcontainer {
+  width: 728px;
+  height: 90px;
+  margin: 0 auto;
+}
+.ie hr {
+  margin-left: -150px !important;
+}

@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "SC2 Balance";
+}
+
+<div id="loadingDiv"></div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">About SC2Balance.com</h4>
+            </div>
+            <div class="modal-body">
+                <div class="modal-title">What is it?</div>
+                <div>
+                    SC2Balance.com is a new project, created to provide to the Starcraft 2 community a resource on game balance.
+                The web application allows you to view visualisations of statistics of current and historic ladder balance between the races in the game, and shows 
+                overall percentages and head to heads as well as the data on individual maps - never make a bad map veto again!
+                </div>
+
+                <br />
+                <div class="modal-title">How does it work?</div>
+                <div>
+                    SC2Balance.com uses public data provided by Blizzard via the recently announced <a href="http://blizzard.github.io/api-sc2-docs/">Starcraft 2 API</a>.
+                We periodically pull data on the GrandMaster leagues in Europe, North America and South Korea (more regions coming soon™). We put this data through a processing run to extract only the
+                ranked 1v1 matches where we can determine both players in the match, that is where a GM player plays another GM in a ladder match, and then calculate the statistics from the results of these matches.
+                </div>
+
+                <br />
+                <div class="modal-title">What stage is it at?</div>
+                <div>
+                    The site is currently in beta. For now this means that the main features are in place and should be working correctly. The site will move from
+                beta once it has been tested with real user load and any bugs that appear are ironed out. Normal data collection began in mid September, so historic
+                data will improve the longer the site is running. The frequency of data collection and therefore the data quality will increase as we adjust to load.
+                </div>
+
+                <br />
+                <div class="modal-title">Can I get involved?</div>
+                <div>
+                    Yes! For now the best way to get involved is to report any bugs at the <a href="https://github.com/sc2balance/SC2Balance">GitHub repository</a>, where you can find the source code and a list of known issues. The data processing used also allows for further
+                depth in the metrics presented, such as balance history per map, breaking up stastistics by ladder region or even stats relating to a specific player.
+                If you would like to see a particular feature added, then please add your suggestion to the <a href="https://github.com/sc2balance/SC2Balance/issues">GitHub issues page</a>.
+                Follow us for updates on Twitter at <a href="https://twitter.com/sc2balance">@@SC2Balance</a>.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK!</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="top-pad"></div>
+<div class="row">
+    <div class="row">
+        <div class="col-lg-2 logo-wrapper">
+            <img alt="SC2Balance Logo" src="~/Content/Images/SC2Balance.png" class="main-logo" />
+        </div>
+        <div class="col-lg-10">
+            <div class="adcontainer">
+            </div>
+            <a data-toggle="modal" href="#myModal" class="btn btn-primary btn-lg pull-right">About</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="navigation-strip col-lg-2">
+            @RenderPage("~/Views/Home/_NavigationStrip.cshtml")
+        </div>
+        <div class="main-graph-container col-lg-10">
+            <div class="row">
+                @RenderPage("~/Views/Shared/_Graphs.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
