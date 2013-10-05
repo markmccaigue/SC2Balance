@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Process", "Process\Process.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcessRunner", "ProcessRunner\ProcessRunner.csproj", "{2954A80C-B399-49B2-9610-6EA7C45D2934}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IngestAndProcessRunner", "IngestAndProcessRunner\IngestAndProcessRunner.csproj", "{CFB2662A-4492-4F81-BED1-D15C6ADB0D4C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{2954A80C-B399-49B2-9610-6EA7C45D2934}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2954A80C-B399-49B2-9610-6EA7C45D2934}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2954A80C-B399-49B2-9610-6EA7C45D2934}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB2662A-4492-4F81-BED1-D15C6ADB0D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB2662A-4492-4F81-BED1-D15C6ADB0D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB2662A-4492-4F81-BED1-D15C6ADB0D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB2662A-4492-4F81-BED1-D15C6ADB0D4C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
