@@ -17,8 +17,13 @@ namespace SC2Balance.IngestAndProcessRunner
 
         public static void LogError(Exception exception)
         {
+            if (exception == null)
+            {
+                return;
+            }
             var message = String.Format("{0}{1}{2}{3}{4}{5}", exception.Message, Environment.NewLine, exception.Source, Environment.NewLine, exception.StackTrace, Environment.NewLine);
             Log(message);
+            LogError(exception.InnerException);
         }
     }
 }
