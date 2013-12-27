@@ -47,6 +47,7 @@
     <Compile Include="CategoryPoints.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="GameType.cs" />
     <Compile Include="Ingestion.cs" />
     <Compile Include="LadderMember.cs" />
     <Compile Include="Ladder.cs" />

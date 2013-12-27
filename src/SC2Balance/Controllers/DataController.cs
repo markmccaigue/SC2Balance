@@ -17,12 +17,15 @@ namespace SC2Balance.Controllers
     public class DataController : ApiController
     {
         # region private
+
+        private static readonly TimeSpan Week = new TimeSpan(7, 0, 0, 0);
+
         private float GetWinRateFromUniqueGamesForRaces(IList<UniqueGmMatch> games, string race1, string race2, string map = null) //r1 vs r2
         {
             var mapGamesPlayed = map == null ? games : games.Where(g => g.Map == map);
             var raceGamesPlayed =
                 mapGamesPlayed.Where(
-                    u => (u.Type == "SOLO") && (u.LadderMember1.FavoriteRaceP1 == race1 && u.LadderMember2.FavoriteRaceP1 == race2) ||
+                    u => (u.Type == GameType.SOLO.ToString()) && (u.LadderMember1.FavoriteRaceP1 == race1 && u.LadderMember2.FavoriteRaceP1 == race2) ||
                          (u.LadderMember1.FavoriteRaceP1 == race2 && u.LadderMember2.FavoriteRaceP1 == race1)).ToList();
 
             float raceGamesCount = raceGamesPlayed.Count();
@@ -40,7 +43,7 @@ namespace SC2Balance.Controllers
             var mapGamesPlayed = map == null ? games : games.Where(g => g.Map == map);
             var raceGamesPlayed =
                 mapGamesPlayed.Where(
-                    u => (u.Type == "SOLO") && (u.LadderMember1.FavoriteRaceP1 == race || u.LadderMember2.FavoriteRaceP1 == race) &&
+                    u => (u.Type == GameType.SOLO.ToString()) && (u.LadderMember1.FavoriteRaceP1 == race || u.LadderMember2.FavoriteRaceP1 == race) &&
                          !(u.LadderMember1.FavoriteRaceP1 == race && u.LadderMember2.FavoriteRaceP1 == race)).ToList();
 
             float raceGamesCount = raceGamesPlayed.Count();
@@ -52,7 +55,7 @@ namespace SC2Balance.Controllers
             var raceWinPercentage = (raceWinCount / raceGamesCount) * 100;
             return raceWinPercentage;
         }
-
+        //TODO: Indexes for performance? Test
         private IList<UniqueGmMatch> GetUniqueGamesInTimeSpan(TimeSpan span)
         {
             using (var db = new DataContext())
@@ -118,8 +121,7 @@ namespace SC2Balance.Controllers
         // GET api/Default1
         public WinRate GetBalanceForSevenDays()
         {
-            var week = new TimeSpan(7, 0, 0, 0);
-            var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(week);
+            var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(Week);
 
             var terranWinRate = GetWinRateFromUniqueGames(uniqueGamesInTimeSpan, "TERRAN");
             var protossWinRate = GetWinRateFromUniqueGames(uniqueGamesInTimeSpan, "PROTOSS");
@@ -135,8 +137,7 @@ namespace SC2Balance.Controllers
 
         public RaceWinRate GetRaceBalanceForSevenDays()
         {
-            var week = new TimeSpan(7, 0, 0, 0);
-            var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(week);
+            var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(Week);
 
             var tVPWinRate = GetWinRateFromUniqueGamesForRaces(uniqueGamesInTimeSpan, "TERRAN", "PROTOSS");
             var tVZWinRate = GetWinRateFromUniqueGamesForRaces(uniqueGamesInTimeSpan, "TERRAN", "ZERG");
@@ -156,7 +157,7 @@ namespace SC2Balance.Controllers
 
             using (var db = new DataContext())
             {
-                var maps = db.UniqueGmMatches.Where(g => g.Type == "SOLO").Select(x => x.Map).Distinct().ToList();
+                var maps = db.UniqueGmMatches.Where(g => g.Type == GameType.SOLO.ToString()).Select(x => x.Map).Distinct().ToList();
 
                 return maps.Select(map => new MapBalanceHistoryPoints
                 {
@@ -184,12 +185,10 @@ namespace SC2Balance.Controllers
 
         public MapRaceWinRate[] GetMapRaceBalanceForSevenDays()
         {
-            var week = new TimeSpan(7, 0, 0, 0);
-
             using (var db = new DataContext())
             {
-                var maps = db.UniqueGmMatches.Where(g => g.Type == "SOLO").Select(x => x.Map).Distinct().ToList();
-                var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(week);
+                var maps = db.UniqueGmMatches.Where(g => g.Type == GameType.SOLO.ToString()).Select(x => x.Map).Distinct().ToList();
+                var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(Week);
 
                 return maps.Select(map => new MapRaceWinRate
                 {
@@ -206,12 +205,10 @@ namespace SC2Balance.Controllers
 
         public MapWinRate[] GetMapBalanceForSevenDays()
         {
-            var week = new TimeSpan(7, 0, 0, 0);
-
             using (var db = new DataContext())
             {
-                var maps = db.UniqueGmMatches.Where(g => g.Type == "SOLO").Select(x => x.Map).Distinct().ToList();
-                var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(week);
+                var maps = db.UniqueGmMatches.Where(g => g.Type == GameType.SOLO.ToString()).Select(x => x.Map).Distinct().ToList();
+                var uniqueGamesInTimeSpan = GetUniqueGamesInTimeSpan(Week);
 
                 return maps.Select(map => new MapWinRate
                 {
