@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Net.Security;
+using System.Security.AccessControl;
 using System.Security.Cryptography.X509Certificates;
 using SC2Balance.Ingest;
 using SC2Balance.Models;
@@ -28,7 +29,7 @@ namespace Sc2Balance.Process
         {
             using (var db = new DataContext())
             {
-                var processingRun = new ProcessingRun {DateTime = DateTime.UtcNow};
+                var processingRun = new ProcessingRun { DateTime = DateTime.UtcNow };
                 ingestionId = ingestionId == 0 ? GetLatestIngestionId(db) : ingestionId;
 
                 var latestMatches = db.Matches.Where(x => x.Ingestion.Id == ingestionId);
@@ -68,13 +69,24 @@ namespace Sc2Balance.Process
                         Map = populatedMatch.Map,
                         Speed = populatedMatch.Speed,
                         Type = populatedMatch.Type,
-                        Winner = populatedMatch.LadderMember1.Matches.Where(x => x.Date == populatedMatch.Date).First().Decision == "WIN" ? populatedMatch.LadderMember1 : populatedMatch.LadderMember2,
+                        Winner = populatedMatch.LadderMember1.Matches.First(x => x.Date == populatedMatch.Date).Decision == "WIN" ? populatedMatch.LadderMember1 : populatedMatch.LadderMember2,
                         ProcessingRun = processingRun
                     };
                     db.UniqueGmMatches.Add(hydratedMatch);
                 }
 
                 db.SaveChanges();
+            }
+        }
+
+        public void RunPostProcessingJobs(IList<IPostProcessingJob> jobs)
+        {
+            using (var db = new DataContext())
+            {
+                foreach (var processingJob in jobs)
+                {
+                    processingJob.Run(db);
+                }
             }
         }
     }
