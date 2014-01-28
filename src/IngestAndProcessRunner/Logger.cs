@@ -11,7 +11,7 @@ namespace SC2Balance.IngestAndProcessRunner
     {
         private static void Log(string message)
         {
-            var path = string.Format("{0}{1}{2}{3}", System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Path.DirectorySeparatorChar, DateTime.UtcNow.ToString("ddMMyyHHmmss"), ".txt");
+            var path = string.Format("{0}{1}{2}{3}", System.Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), Path.DirectorySeparatorChar, DateTime.UtcNow.ToString("ddMMyyHHmmssffffff"), ".txt");
             File.WriteAllText(path, message);
         }
 

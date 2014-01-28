@@ -54,8 +54,10 @@ namespace Sc2Balance.Process
                 var ingestion = db.Ingestions.FirstOrDefault(i => i.Id == ingestionId);
                 foreach (var populatedMatch in populatedMatches)
                 {
+                    //Make sure that we only store matches once from this ingestion
                     var date = UnixTimeStampToDateTime(populatedMatch.Date);
-                    if (db.UniqueGmMatches.Any(u => DateTime.Equals(date, u.DateTime)))
+                    var uniqueMatches = new List<UniqueGmMatch>();
+                    if (uniqueMatches.Any(u => DateTime.Equals(date, u.DateTime)))
                     {
                         continue;
                     }
@@ -72,6 +74,7 @@ namespace Sc2Balance.Process
                         Winner = populatedMatch.LadderMember1.Matches.First(x => x.Date == populatedMatch.Date).Decision == "WIN" ? populatedMatch.LadderMember1 : populatedMatch.LadderMember2,
                         ProcessingRun = processingRun
                     };
+                    uniqueMatches.Add(hydratedMatch);
                     db.UniqueGmMatches.Add(hydratedMatch);
                 }
 
@@ -81,12 +84,10 @@ namespace Sc2Balance.Process
 
         public void RunPostProcessingJobs(IList<IPostProcessingJob> jobs)
         {
-            using (var db = new DataContext())
+            foreach (var processingJob in jobs)
             {
-                foreach (var processingJob in jobs)
-                {
-                    processingJob.Run(db);
-                }
+                Console.WriteLine(processingJob.GetType().Name);
+                processingJob.Run();
             }
         }
     }

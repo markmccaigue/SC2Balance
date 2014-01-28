@@ -19,7 +19,7 @@ namespace SC2Balance.Ingest
             var count = 0;
             foreach (var ladderMember in ladderMembers)
             {
-                Console.WriteLine("Processing: " + ladderMember.Character.DisplayName + " Count: "+ count++);
+                Console.WriteLine("Processing: " + ladderMember.Character.DisplayName + " Count: " + count++);
                 var matches = api.GetRecentMatchesForPlayer(ladderMember.Character.ProfilePath, region).Result.ToList();
                 ladderMember.Matches = matches;
                 ladderMember.LadderRegion = region;
@@ -27,7 +27,7 @@ namespace SC2Balance.Ingest
 
             return ladderMembers;
         }
-                public void RunNewIngestion()
+        public void RunNewIngestion()
         {
             var ingestion = new Ingestion
             {

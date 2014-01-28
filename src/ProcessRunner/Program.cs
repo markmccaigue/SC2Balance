@@ -11,7 +11,24 @@ namespace ProcessRunner
     {
         static void Main(string[] args)
         {
-            new ProcessingManager().RunUniqueGamesPass();
+            var jobs = new List<IPostProcessingJob>
+            {
+                new BalancePostProcessingJob(),
+                new BalanceHistoryPostProcessingJob(),
+                new MapBalancePostProcessingJob(),
+                new MapBalanceHistoryPostProcessingJob(),
+                new MapRaceBalancePostProcessingJob(),
+                new RaceBalancePostProcessingJob()
+            };
+
+            var start = DateTime.UtcNow;
+            var processingManager = new ProcessingManager();
+            processingManager.RunUniqueGamesPass();
+            processingManager.RunPostProcessingJobs(jobs);
+            var time = DateTime.UtcNow - start;
+
+            Console.WriteLine(time.TotalSeconds);
+            Console.ReadLine();
         }
     }
 }

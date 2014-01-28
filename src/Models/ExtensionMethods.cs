@@ -15,13 +15,10 @@ namespace SC2Balance.Models
             {
                 case LadderRegion.Europe:
                     return "eu";
-                    break;
                 case LadderRegion.Korea:
                     return "kr";
-                    break;
                 case LadderRegion.NorthAmerica:
                     return "us";
-                    break;
                 default:
                     return region.ToString();
             }

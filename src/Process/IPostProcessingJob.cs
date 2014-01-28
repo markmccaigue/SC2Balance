@@ -10,6 +10,6 @@ namespace Sc2Balance.Process
 {
     public interface IPostProcessingJob
     {
-        void Run(DataContext db);
+        void Run();
     }
 }

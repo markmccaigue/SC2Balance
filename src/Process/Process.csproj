@@ -30,14 +30,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,9 +50,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractPostProcessingJob.cs" />
+    <Compile Include="BalanceHistoryPostProcessingJob.cs" />
+    <Compile Include="BalancePostProcessingJob.cs" />
     <Compile Include="IPostProcessingJob.cs" />
+    <Compile Include="MapBalanceHistoryProcessingJob.cs" />
+    <Compile Include="MapBalanceProcessingJob.cs" />
+    <Compile Include="MapRaceBalancePostProcessingJob.cs" />
     <Compile Include="ProcessingManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RaceBalancePostProcessingJob.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ingest\Ingest.csproj">

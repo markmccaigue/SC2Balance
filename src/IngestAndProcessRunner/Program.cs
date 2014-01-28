@@ -14,7 +14,20 @@ namespace SC2Balance.IngestAndProcessRunner
             try
             {
                 new IngestionManager().RunNewIngestion();
-                new ProcessingManager().RunUniqueGamesPass();
+
+                var jobs = new List<IPostProcessingJob>
+                {
+                    new BalancePostProcessingJob(),
+                    new BalanceHistoryPostProcessingJob(),
+                    new MapBalancePostProcessingJob(),
+                    //new MapBalanceHistoryPostProcessingJob(),
+                    new MapRaceBalancePostProcessingJob(),
+                    new RaceBalancePostProcessingJob()
+                };
+
+                var processingManager = new ProcessingManager();
+                processingManager.RunUniqueGamesPass();
+                processingManager.RunPostProcessingJobs(jobs);
             }
             catch (Exception exception)
             {

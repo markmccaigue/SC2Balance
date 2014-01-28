@@ -20,5 +20,6 @@ namespace SC2Balance.Ingest
         public DbSet<Match> Matches { get; set; }
         public DbSet<UniqueGmMatch> UniqueGmMatches { get; set; }
         public DbSet<ProcessingRun> ProcessingRuns { get; set; }
+        public DbSet<PostProcessingOutput> PostProcessingOutputs { get; set; }
     }
 }
