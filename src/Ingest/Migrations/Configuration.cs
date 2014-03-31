@@ -5,7 +5,7 @@ namespace SC2Balance.Ingest.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<SC2Balance.Ingest.DataContext>
+    public sealed class Configuration : DbMigrationsConfiguration<SC2Balance.Ingest.DataContext>
     {
         public Configuration()
         {

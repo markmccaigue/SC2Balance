@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SC2Balance.Models;
+using SC2Balance.Ingest.Migrations;
 
 namespace SC2Balance.Ingest
 {
@@ -12,7 +13,7 @@ namespace SC2Balance.Ingest
     {
         public DataContext()
         {
-            Database.SetInitializer<DataContext>(null);
+            Database.SetInitializer<DataContext>(new MigrateDatabaseToLatestVersion<DataContext, Configuration>());
         }
 
         public DbSet<Ingestion> Ingestions { get; set; }
