@@ -13,7 +13,7 @@ namespace Sc2Balance.Process
     {
         public override string JobType
         {
-            get { return "RACEBALANCE"; }
+            get { return PostProcessingJobType.RACEBALANCE.ToString(); }
         }
 
         public override void Run()
