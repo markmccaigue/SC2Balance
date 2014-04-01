@@ -75,8 +75,15 @@ namespace SC2Balance.Controllers
         {
             using (var db = new DataContext())
             {
-                var lastUpdated = db.ProcessingRuns.OrderByDescending(r => r.Id).First().DateTime;
-                return (int)TimeSpan.FromTicks(DateTime.UtcNow.Ticks - lastUpdated.Ticks).TotalHours;
+                try
+                {
+                    var lastUpdated = db.ProcessingRuns.OrderByDescending(r => r.Id).First().DateTime;
+                    return (int) TimeSpan.FromTicks(DateTime.UtcNow.Ticks - lastUpdated.Ticks).TotalHours;
+                }
+                catch (InvalidOperationException)
+                {
+                    throw new ApplicationException("No ProcessingRuns currently loaded. Run the IngestAndProcessRunner, then the ProcessRunner to load the database before viewing the webpage.");
+                }
             }
         }
 
