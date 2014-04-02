@@ -15,6 +15,7 @@ namespace SC2Balance.Controllers
 {
     public class DataController : ApiController
     {
+
         //Rename the API that mentions a time span
         //Long term plan is to take in a param for this
 
@@ -28,12 +29,12 @@ namespace SC2Balance.Controllers
             };
         }
 
-        private HttpResponseMessage getResultsForPostProcessingJob(String postProcessingJobType)
+        private HttpResponseMessage GetResultsForPostProcessingJob(PostProcessingJobType postProcessingJobType)
         {
             var json = String.Empty;
             using (var db = new DataContext())
             {
-                json = db.PostProcessingOutputs.OrderByDescending(x => x.Id).First(x => x.PostProcessingJobType == postProcessingJobType).JsonResults;
+                json = db.PostProcessingOutputs.OrderByDescending(x => x.Id).First(x => x.PostProcessingJobType == postProcessingJobType.ToString()).JsonResults;
             }
 
             return BuildResponseFromJson(json);
@@ -43,32 +44,32 @@ namespace SC2Balance.Controllers
  
         public HttpResponseMessage GetBalanceForSevenDays()
         {
-            return getResultsForPostProcessingJob("BALANCE");
+            return GetResultsForPostProcessingJob(PostProcessingJobType.BALANCE);
         }
 
         public HttpResponseMessage GetRaceBalanceForSevenDays()
         {
-            return getResultsForPostProcessingJob("RACEBALANCE");
+            return GetResultsForPostProcessingJob(PostProcessingJobType.RACEBALANCE);
         }
 
         public HttpResponseMessage GetMapBalanceHistory()
         {
-            return getResultsForPostProcessingJob("MAPBALANCEHISTORY");
+            return GetResultsForPostProcessingJob(PostProcessingJobType.MAPBALANCEHISTORY);
         }
 
         public HttpResponseMessage GetBalanceHistory()
         {
-            return getResultsForPostProcessingJob("BALANCEHISTORY");
+            return GetResultsForPostProcessingJob(PostProcessingJobType.BALANCEHISTORY);
         }
 
         public HttpResponseMessage GetMapRaceBalanceForSevenDays()
         {
-            return getResultsForPostProcessingJob("MAPRACEBALANCE");
+            return GetResultsForPostProcessingJob(PostProcessingJobType.MAPRACEBALANCE);
         }
 
         public HttpResponseMessage GetMapBalanceForSevenDays()
         {
-            return getResultsForPostProcessingJob("MAPBALANCE");
+            return GetResultsForPostProcessingJob(PostProcessingJobType.MAPBALANCE);
         }
 
         public int GetHoursSinceUpdate()
@@ -90,5 +91,3 @@ namespace SC2Balance.Controllers
     }
          
 }
-//TODO: Convert magic strings to enum
-

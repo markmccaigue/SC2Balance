@@ -61,6 +61,7 @@
     <Compile Include="Player.cs" />
     <Compile Include="Points.cs" />
     <Compile Include="Portrait.cs" />
+    <Compile Include="PostProcessingJobType.cs" />
     <Compile Include="PostProcessingOutput.cs" />
     <Compile Include="ProcessingRun.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
