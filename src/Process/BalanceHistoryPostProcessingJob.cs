@@ -20,25 +20,21 @@ namespace Sc2Balance.Process
         {
             using (var db = new DataContext())
             {
-                var currentPointsIngestion = db.Ingestions.OrderByDescending(x => x.Id).ToList().ElementAt(1);
-                var latestCurrentlyAnalysedGameTime = db.UniqueGmMatches.Where(m => m.IngestionId == currentPointsIngestion.Id).OrderByDescending(m => m.DateTime).First().DateTime;
+                var latestPointsJson = db.PostProcessingOutputs.OrderByDescending(x => x.ProcessingRunId).First(x => x.PostProcessingJobType == JobType).JsonResults;
+                var latestPoints = Newtonsoft.Json.JsonConvert.DeserializeObject<BalanceHistoryPoint[]>(latestPointsJson);
+                var latestGameDate = latestPoints.OrderByDescending(x => x.DateTime).First().DateTime;
+                var span = DateTime.UtcNow - latestGameDate;
 
-                var newGamesTimeSpan = DateTime.UtcNow - latestCurrentlyAnalysedGameTime;
-
-                var currentPointsJson = db.PostProcessingOutputs.OrderByDescending(x => x.ProcessingRunId).First(x => x.PostProcessingJobType == JobType).JsonResults;
-                var currentPoints = Newtonsoft.Json.JsonConvert.DeserializeObject<BalanceHistoryPoint[]>(currentPointsJson);
-
-                var newGames = GetUniqueGamesInTimeSpan(newGamesTimeSpan);
-                var newPoints = new List<BalanceHistoryPoint>();
-                if (newGames.Count != 0)
+                var newGames = GetUniqueGamesInTimeSpan(span);
+                if (newGames.Count == 0)
                 {
-                    newPoints = GetBalanceHistoryPointsFromUniqueGames(newGames).ToList();
-                    newPoints = newPoints.SkipWhile(x => x.DateTime <= currentPointsIngestion.Time).ToList();
+                    return;
                 }
+                var newPoints = GetBalanceHistoryPointsFromUniqueGames(newGames);
 
-                var newTotalPoints = currentPoints.Concat(newPoints);
+                var newTotalPoints = latestPoints.Concat(newPoints);
 
-                var json = JsonConvert.SerializeObject(newTotalPoints.OrderBy(x => x.DateTime));
+                var json = JsonConvert.SerializeObject(newTotalPoints);
                 Save(json);
             }
         }
