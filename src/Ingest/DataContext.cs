@@ -13,7 +13,11 @@ namespace SC2Balance.Ingest
     {
         public DataContext()
         {
-            Database.SetInitializer<DataContext>(new MigrateDatabaseToLatestVersion<DataContext, Configuration>());
+            var productionEnvironmentVariable = Environment.GetEnvironmentVariable("APPSETTING_Production");
+            var isProduction = string.IsNullOrEmpty(productionEnvironmentVariable) || !Convert.ToBoolean(productionEnvironmentVariable) ? false : true;
+            var initialiser = isProduction ? null : new MigrateDatabaseToLatestVersion<DataContext, Configuration>();
+            
+            Database.SetInitializer<DataContext>(initialiser);
         }
 
         public DbSet<Ingestion> Ingestions { get; set; }

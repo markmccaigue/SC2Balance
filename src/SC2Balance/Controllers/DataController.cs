@@ -34,7 +34,8 @@ namespace SC2Balance.Controllers
             var json = String.Empty;
             using (var db = new DataContext())
             {
-                json = db.PostProcessingOutputs.OrderByDescending(x => x.Id).First(x => x.PostProcessingJobType == postProcessingJobType.ToString()).JsonResults;
+                var jobString = postProcessingJobType.ToString();
+                json = db.PostProcessingOutputs.OrderByDescending(x => x.Id).First(x => x.PostProcessingJobType == jobString).JsonResults;
             }
 
             return BuildResponseFromJson(json);
