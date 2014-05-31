@@ -15,8 +15,8 @@ namespace SC2Balance.Ingest
         {
             var isProduction = Convert.ToBoolean(Environment.GetEnvironmentVariable("APPSETTING_Production"));
             var initialiser = isProduction ? null : new MigrateDatabaseToLatestVersion<DataContext, Configuration>();
-
-            Database.SetInitializer<DataContext>(null);
+            
+            Database.SetInitializer<DataContext>(initialiser);
         }
 
         public DbSet<Ingestion> Ingestions { get; set; }
